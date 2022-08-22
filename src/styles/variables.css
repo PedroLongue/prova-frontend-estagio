@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap");
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --blue-500: #161b22;
+  --font-family-mavenPro: "Maven Pro", sans-serif;
+}
