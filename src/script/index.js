@@ -1,14 +1,13 @@
 const showCepInformations = document.querySelector(".cep-informations");
 
-async function searchCep() {
+const searchCep = async () => {
   const cep = document.querySelector(".cep-input");
   const cepValue = document.querySelector(".cep-input").value;
   const invalidCep = document.querySelector(".error-message");
-  // const countAfterHyphen = cepValue.toString().split("-")[1].length; //conta os numeros apos o hífen
   const validCep = cepValue.replace("-", ""); //auxilia no tratamento dos erros
-
+  const onlyNumber = /^[0-9]+$/.test(validCep);
   //verifica se o cep não é válido
-  if (validCep.length !== 8 || isNaN(validCep)) {
+  if (validCep.length !== 8 || !onlyNumber) {
     resetInput(cep);
     resetOutput();
     invalidCep.innerHTML = `<div>
@@ -18,14 +17,14 @@ async function searchCep() {
     invalidCep.innerHTML = ``;
     let url = `https://viacep.com.br/ws/${cepValue}/json/`; //url da API
     let response = await fetch(url);
-    let cepData = await response.json();
+    let cepData = await response.json(); //armazena o json
 
-    renderAdress(cepData, invalidCep);
+    renderAdress(cepData);
     resetInput(cep);
   }
-}
+};
 
-function renderAdress(cepData) {
+const renderAdress = (cepData) => {
   if (cepData.erro) {
     showCepInformations.innerHTML = `<p>Endereço não localizado!</p>`; //Tratamento de erro, caso o cep informado não esteja na API
   } else {
@@ -43,13 +42,13 @@ function renderAdress(cepData) {
                         <p>IBGE: ${cepData.ibge}</p>
                       </div>  `;
   }
-}
+};
 
-function resetInput(cep) {
+const resetInput = (cep) => {
   cep.value = "";
-}
+};
 
-function resetOutput() {
+const resetOutput = () => {
   //reseta as informações renderizadas
   showCepInformations.innerHTML = ``;
-}
+};
