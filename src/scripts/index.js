@@ -6,17 +6,19 @@ async function searchCep() {
 
   if (validCep.length !== 8) {
     resetInput(cep);
-    invalidCep.innerHTML = `<p>Digite um cep válido!</p>`;
+    invalidCep.innerHTML = `<div>
+                              <p>Digite um cep válido!</p>
+                            </div>`;
     return;
   } else {
     invalidCep.innerHTML = ``;
-  }
-  let url = `https://viacep.com.br/ws/${cepValue}/json/`;
-  let response = await fetch(url);
-  let cepData = await response.json();
+    let url = `https://viacep.com.br/ws/${cepValue}/json/`;
+    let response = await fetch(url);
+    let cepData = await response.json();
 
-  renderAdress(cepData, invalidCep);
-  resetInput(cep);
+    renderAdress(cepData, invalidCep);
+    resetInput(cep, cepData);
+  }
 }
 
 function renderAdress(cepData, invalidCep) {
