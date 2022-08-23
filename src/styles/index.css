@@ -32,7 +32,8 @@
 
 .cep-informations p,
 .error-message p,
-.cep-informations p {
+.cep-informations p,
+a {
   color: var(--white);
   font-family: var(--font-family-mavenPro);
 }
@@ -40,13 +41,17 @@
 .cep-informations {
   width: 100%;
   background: var(--white);
-  /* padding: 15px; */
   max-width: 26.4rem;
   margin-top: 1rem;
   border-radius: 0.4rem;
 }
 
-.cep-informations p {
+.cep-informations p:first-child {
+  margin-top: 0;
+}
+
+.cep-informations p,
+a {
   color: var(--black);
   margin: 0.5rem;
 }
