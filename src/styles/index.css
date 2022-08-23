@@ -46,10 +46,6 @@ a {
   border-radius: 0.4rem;
 }
 
-.cep-informations p:first-child {
-  margin-top: 0;
-}
-
 .cep-informations p,
 a {
   color: var(--black);
